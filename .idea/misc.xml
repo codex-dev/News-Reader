@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.10989583333333333" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/drawable/bg_btn.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/progress.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/progress_wheel.xml" value="0.1109375" />

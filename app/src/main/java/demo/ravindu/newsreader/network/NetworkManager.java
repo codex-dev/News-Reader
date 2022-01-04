@@ -5,6 +5,8 @@ import static demo.ravindu.newsreader.pagination.PaginationListener.PAGE_SIZE;
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import demo.ravindu.newsreader.BuildConfig;
 import okhttp3.Call;
@@ -31,9 +33,15 @@ public class NetworkManager {
     }
 
     public void initiateRequest(String currentQuery, int currentPage, NewsResultListener listener) {
+        try {
+            // if there are spaces in query, they'll be encoded before appending to url
+            currentQuery = URLEncoder.encode(currentQuery, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         // non-variable values have been hardcoded to url
-        String url = API + "q=" + currentQuery + "&sortBy=popularity" +
-//                "&apiKey=" + BuildConfig.NEWS_API_KEY +
+        String url = API + "q=" + currentQuery + "&sortBy=relevancy" +
                 "&language=en&page=" + currentPage + "&pageSize=" + PAGE_SIZE;
 
         Request request = new Request.Builder()
@@ -53,6 +61,5 @@ public class NetworkManager {
                 listener.onSuccess(response.body().string());
             }
         });
-
     }
 }

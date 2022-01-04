@@ -7,6 +7,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class DateFormatter {
+
+    // convert utc time to local time of a given date-time format
     public static String convertTimeFromUtcToLocal(String outputDateFormat, String dateUTC) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));

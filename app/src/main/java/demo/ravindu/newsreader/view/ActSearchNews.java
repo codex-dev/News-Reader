@@ -68,16 +68,25 @@ public class ActSearchNews extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_search_news);
 
+        layoutManager = new LinearLayoutManager(ActSearchNews.this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
         initViews();
         setEventListeners();
     }
 
+    /**
+     * initialize views in the ui
+     */
     private void initViews() {
         btnCancel = findViewById(R.id.btnCancel);
         etSearch = findViewById(R.id.etSearch);
         rvNews = findViewById(R.id.rvNews);
     }
 
+    /**
+     * define click listener action for views
+     */
     private void setEventListeners() {
         etSearch.setOnFocusChangeListener(this);
         etSearch.addTextChangedListener(twSearch);
@@ -116,6 +125,9 @@ public class ActSearchNews extends AppCompatActivity
         });
     }
 
+    /**
+     * retrieve news result for the input query from external api
+     */
     private void searchNews() {
         NetworkManager networkManager = NetworkManager.getInstance();
         networkManager.initiateRequest(currentQuery, currentPage, new NewsResultListener() {
@@ -132,9 +144,8 @@ public class ActSearchNews extends AppCompatActivity
                                 adapter = new NewsRecyclerAdapter(ActSearchNews.this, new ArrayList<>());
                                 rvNews.setAdapter(adapter);
                                 rvNews.setHasFixedSize(true);
-                                layoutManager = new LinearLayoutManager(ActSearchNews.this);
-                                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                                 rvNews.setLayoutManager(layoutManager);
+
                             } else if (currentPage > PAGE_START) {
                                 // there's no loading bar to remove at the beginning to be removed before setting
                                 // first set of data to rvNews
@@ -160,6 +171,10 @@ public class ActSearchNews extends AppCompatActivity
         });
     }
 
+    /**
+     * define click listener for cancel button
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnCancel && btnCancel.getVisibility() == View.VISIBLE) {
@@ -169,12 +184,17 @@ public class ActSearchNews extends AppCompatActivity
         }
     }
 
+    /**
+     * show latest 6 of past queries when search field gained focus
+     * @param view
+     * @param hasFocus
+     */
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
-//        if (view.getId() == R.id.etSearch) {
-//            if (hasFocus) {
-//                // TODO if has previous queries, show latest 6
-//            }
-//        }
+        if (view.getId() == R.id.etSearch) {
+            if (hasFocus) {
+                // TODO if has previous queries, show latest 6
+            }
+        }
     }
 }

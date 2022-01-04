@@ -33,6 +33,9 @@ public class ActPreviewNews extends AppCompatActivity implements View.OnClickLis
         setValues();
     }
 
+    /**
+     * initialize views
+     */
     private void initViews() {
         ivBack = findViewById(R.id.ivBack);
         ivImage = findViewById(R.id.ivImage);
@@ -44,10 +47,17 @@ public class ActPreviewNews extends AppCompatActivity implements View.OnClickLis
         btnReadMore = findViewById(R.id.btnReadMore);
     }
 
+    /**
+     * set click listener for button
+     */
     private void setEventListeners() {
+        ivBack.setOnClickListener(this);
         btnReadMore.setOnClickListener(this);
     }
 
+    /**
+     * Set values to fields retrieved from previous UI
+     */
     private void setValues() {
         Bundle b = getIntent().getExtras();
         url = b.getString("url");
@@ -69,6 +79,10 @@ public class ActPreviewNews extends AppCompatActivity implements View.OnClickLis
         tvContent.setText(b.getString("content"));
     }
 
+    /**
+     * define click listener action for each view
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.ivBack) {
