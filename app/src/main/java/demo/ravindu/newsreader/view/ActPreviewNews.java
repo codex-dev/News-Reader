@@ -63,7 +63,7 @@ public class ActPreviewNews extends AppCompatActivity implements View.OnClickLis
         url = b.getString("url");
 
         if (!TextFormatter.isNullOrEmpty(b.getString("image"))) {
-            Glide.with(this).load(b.getString("image")).into(ivImage);
+            Glide.with(this).load(b.getString("image")).error(R.drawable.img_placeholder).into(ivImage);
         }
 
         tvSource.setText(b.getString("source"));

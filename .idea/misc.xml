@@ -16,7 +16,7 @@
         <entry key="app/src/main/res/layout/act_search_news.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_loading.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.22552083333333334" />
-        <entry key="app/src/main/res/layout/list_item_loading.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/list_item_loading.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_news.xml" value="0.29739583333333336" />
       </map>
     </option>

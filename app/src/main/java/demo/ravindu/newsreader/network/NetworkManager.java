@@ -19,30 +19,34 @@ public class NetworkManager {
 
     private static NetworkManager manager;
     private final OkHttpClient okHttpClient;
-    private final String API = "https://newsapi.org/v2/everything?";
 
     private NetworkManager() {
         okHttpClient = new OkHttpClient();
     }
 
     public static NetworkManager getInstance() {
+        // singleton pattern - only one instance is being used at any given moment.
         if (manager == null) {
             manager = new NetworkManager();
         }
         return manager;
     }
 
-    public void initiateRequest(String currentQuery, int currentPage, NewsResultListener listener) {
+    public void initiateRequest(String query, int currentPage, NewsResultListener listener) {
         try {
             // if there are spaces in query, they'll be encoded before appending to url
-            currentQuery = URLEncoder.encode(currentQuery, "UTF-8");
+            query = URLEncoder.encode(query, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
-        // non-variable values have been hardcoded to url
-        String url = API + "q=" + currentQuery + "&sortBy=relevancy" +
-                "&language=en&page=" + currentPage + "&pageSize=" + PAGE_SIZE;
+        // values of sortBy and language query parameters have been hardcoded to url
+        String url = "https://newsapi.org/v2/everything?"
+                + "q=" + query
+                + "&sortBy=relevancy"
+                + "&language=en"
+                + "&page=" + currentPage
+                + "&pageSize=" + PAGE_SIZE;
 
         Request request = new Request.Builder()
                 .url(url)
@@ -51,14 +55,14 @@ public class NetworkManager {
 
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-                listener.onError(e.getMessage());
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                listener.onSuccess(response.body().string());
             }
 
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                listener.onSuccess(response.body().string());
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                listener.onError(e.getMessage());
             }
         });
     }

@@ -76,20 +76,20 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public void addItems(List<Article> postItems) {
         listNews.addAll(postItems);
-//        notifyDataSetChanged();
-        notifyItemRangeChanged(0, listNews.size() - 1);
+        notifyDataSetChanged();
+//        notifyItemRangeChanged(0, listNews.size() - 1);
     }
 
     public void addLoading() {
         isLoaderVisible = true;
         listNews.add(new Article());
-        notifyItemRangeChanged(listNews.size() - 2, listNews.size() - 1);
+        notifyItemInserted(listNews.size() - 1);
     }
 
     public void clear() {
         listNews.clear();
-//        notifyDataSetChanged();
-        notifyItemRangeChanged(0, listNews.size() - 1);
+        notifyDataSetChanged();
+//        notifyItemRangeChanged(0, listNews.size() - 1);
     }
 
     public void removeLoading() {
@@ -98,8 +98,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         Article item = getItem(position);
         if (item != null) {
             listNews.remove(position);
-//            notifyItemRemoved(position);
-            notifyItemRangeChanged(listNews.size() - 2, listNews.size() - 1);
+            notifyItemRemoved(position);
         }
     }
 
@@ -126,7 +125,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             Article item = listNews.get(position);
 
             if (!TextFormatter.isNullOrEmpty(item.getUrlToImage())) {
-                Glide.with(context).load(listNews.get(position).getUrlToImage()).into(ivThumbnail);
+                Glide.with(context).load(listNews.get(position).getUrlToImage()).error(R.drawable.img_placeholder).into(ivThumbnail);
             }
 
             try {
