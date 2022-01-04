@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.10989583333333333" />
+        <entry key="app/src/main/res/drawable/bg_btn.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable/progress.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable/progress_wheel.xml" value="0.1109375" />
+        <entry key="app/src/main/res/layout/act_preview_news.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/act_search_news.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_loading.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/layout/item_post.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/layout/list_item_loading.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/list_item_news.xml" value="0.29739583333333336" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

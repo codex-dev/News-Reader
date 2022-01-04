@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">News Reader</string>
+    <string name="news_feed">News Feed</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="hint_search">Search</string>
+    <string name="err_loading">Error occurred while loading result.</string>
+    <string name="err_connection">Error occurred while performing search.</string>
+    <string name="btn_read_more">Read the Full Article</string>
 </resources>

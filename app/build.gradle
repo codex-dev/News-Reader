@@ -1,5 +1,9 @@
 plugins {
     id 'com.android.application'
+
+    // secrets gradle plugin - hide api keys from version control
+    // ref - https://www.youtube.com/watch?v=X8lYNW_Or2o&t=81s
+    id "com.google.secrets_gradle_plugin" version "0.6.1"
 }
 
 android {
@@ -28,11 +32,22 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:4.9.3"
+
+    implementation 'com.android.volley:volley:1.2.1'
+
+    // gson - convert json response to java object
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // glide - download news image
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
