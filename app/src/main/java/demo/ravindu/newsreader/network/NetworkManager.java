@@ -2,13 +2,15 @@ package demo.ravindu.newsreader.network;
 
 import static demo.ravindu.newsreader.pagination.PaginationListener.PAGE_SIZE;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import demo.ravindu.newsreader.BuildConfig;
+import demo.ravindu.newsreader.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -19,15 +21,17 @@ public class NetworkManager {
 
     private static NetworkManager manager;
     private final OkHttpClient okHttpClient;
+    private final Context context;
 
-    private NetworkManager() {
+    private NetworkManager(Context context) {
+        this.context = context;
         okHttpClient = new OkHttpClient();
     }
 
-    public static NetworkManager getInstance() {
+    public static NetworkManager getInstance(Context context) {
         // singleton pattern - only one instance is being used at any given moment.
         if (manager == null) {
-            manager = new NetworkManager();
+            manager = new NetworkManager(context);
         }
         return manager;
     }
@@ -50,7 +54,7 @@ public class NetworkManager {
 
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("X-Api-Key", BuildConfig.NEWS_API_KEY)
+                .addHeader("X-Api-Key", context.getString(R.string.api_key))
                 .build();
 
         okHttpClient.newCall(request).enqueue(new Callback() {

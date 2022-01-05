@@ -6,4 +6,6 @@
     <string name="err_loading">Error occurred while loading result.</string>
     <string name="err_connection">Error occurred while performing search.</string>
     <string name="btn_read_more">Read the Full Article</string>
+
+    <string name="api_key">cec0a4b71e234f658153457823545ade</string>
 </resources>

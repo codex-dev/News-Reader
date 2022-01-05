@@ -49,8 +49,6 @@ public class ActSearchNews extends AppCompatActivity
 
     private TextInputEditText etSearch;
     private TextView btnCancel;
-    private RecyclerView rvNews;
-
     private final TextWatcher twSearch = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -67,6 +65,7 @@ public class ActSearchNews extends AppCompatActivity
             btnCancel.setVisibility(!TextFormatter.isNullOrEmpty(etSearch) ? View.VISIBLE : View.GONE);
         }
     };
+    private RecyclerView rvNews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +103,7 @@ public class ActSearchNews extends AppCompatActivity
                     currentQuery = TextFormatter.getTrimmedText(etSearch);
 
                     // hide keyboard
-//                    hideSoftKeyboard(ActSearchNews.this);
+                    hideSoftKeyboard(ActSearchNews.this);
 
                     // clear list set to adapter before performing a new search
                     if (adapter != null) {
@@ -139,9 +138,9 @@ public class ActSearchNews extends AppCompatActivity
     }
 
 
-
     /**
      * hide soft keyboard
+     *
      * @param activity
      */
     private void hideSoftKeyboard(Activity activity) {
@@ -163,7 +162,7 @@ public class ActSearchNews extends AppCompatActivity
      * retrieve news result for the input query from external api
      */
     private void searchNews() {
-        NetworkManager networkManager = NetworkManager.getInstance();
+        NetworkManager networkManager = NetworkManager.getInstance(this);
         networkManager.initiateRequest(currentQuery, currentPage, new NewsResultListener() {
             @Override
             public void onSuccess(String response) {
@@ -249,11 +248,18 @@ public class ActSearchNews extends AppCompatActivity
         DatabaseManager databaseManager = DatabaseManager.getInstance(this);
         List<PreviousQuery> listPreviousQueries = databaseManager.getAllQueries();
 
-        // extract latest 6 queries to be shown as search suggestions
-        List<PreviousQuery> listQuerySuggestions = listPreviousQueries
-                .subList(listPreviousQueries.size()-6, listPreviousQueries.size());
+        if (listPreviousQueries != null && listPreviousQueries.size() > 0) {
 
-        // reverse list so that last item becomes the first item of the suggestion list
-        Collections.reverse(listQuerySuggestions);
+            if (listPreviousQueries.size() > 6) {
+                // extract latest 6 queries to be shown as search suggestions
+                listPreviousQueries = listPreviousQueries
+                        .subList(listPreviousQueries.size() - 6, listPreviousQueries.size());
+            }
+
+            // reverse list so that last item becomes the first item of the suggestion list
+            Collections.reverse(listPreviousQueries);
+        }
+
+        // TODO populate suggestions
     }
 }

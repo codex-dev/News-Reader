@@ -3,7 +3,7 @@ plugins {
 
     // secrets gradle plugin - hide api keys from version control
     // ref - https://www.youtube.com/watch?v=X8lYNW_Or2o&t=81s
-    id "com.google.secrets_gradle_plugin" version "0.6.1"
+//    id "com.google.secrets_gradle_plugin" version "0.6.1"
 }
 
 android {

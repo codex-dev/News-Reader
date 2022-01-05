@@ -81,6 +81,7 @@ public class ActPreviewNews extends AppCompatActivity implements View.OnClickLis
 
     /**
      * define click listener action for each view
+     *
      * @param view
      */
     @Override

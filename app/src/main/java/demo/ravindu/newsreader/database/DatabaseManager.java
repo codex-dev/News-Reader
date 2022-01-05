@@ -26,17 +26,17 @@ public class DatabaseManager {
         return manager;
     }
 
-    public void insertQuery(String query){
-        Log.d(TAG, "Inserting new query : "+query);
+    public void insertQuery(String query) {
+        Log.d(TAG, "Inserting new query : " + query);
         databaseHandler.addQuery(new PreviousQuery(query));
     }
 
-    public List<PreviousQuery> getAllQueries(){
+    public List<PreviousQuery> getAllQueries() {
         // Read all queries
         List<PreviousQuery> listQueries = databaseHandler.getAllQueries();
 
         for (PreviousQuery pq : listQueries) {
-            String log = "[Id: " + pq.getId() + " , Query Description: " + pq.getQueryDesc()+"]";
+            String log = "[Id: " + pq.getId() + " , Query Description: " + pq.getQueryDesc() + "]";
             Log.d(TAG, log);
         }
 
